@@ -20,7 +20,7 @@ function Menu() {
         {dishes.map(dish => (
           <div key={dish._id} className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 overflow-hidden">
             <img
-              src={`http://localhost:8080/${dish.image}`}
+              src={`http://localhost:8080/uploads/${dish.image}`} // ✅ Corrected path
               alt={dish.name}
               className="w-full h-56 object-cover"
             />

@@ -1,13 +1,14 @@
-const express = require('express');
+import express from 'express';
+import Order from '../models/Order.js'; // Now uses import correctly
+
 const router = express.Router();
-const Order = require('../models/Order'); // Order model for MongoDB
 
 // POST route to create a new order
 router.post('/orders', async (req, res) => {
   try {
     // Destructure the order data from the request body
     const { name, email, phone, address, cartItems, totalPrice, paymentInfo } = req.body;
-    
+
     // Create a new order object
     const order = new Order({
       customer: { name, email, phone, address },
@@ -16,7 +17,7 @@ router.post('/orders', async (req, res) => {
       paymentInfo,
       status: 'Pending', // Default order status
     });
-    
+
     // Save the order to the database
     const savedOrder = await order.save();
     res.status(201).json(savedOrder); // Respond with the saved order
@@ -84,4 +85,4 @@ router.delete('/orders/:id', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router; // Use export default for ES module

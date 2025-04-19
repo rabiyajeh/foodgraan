@@ -1,5 +1,3 @@
-// index.js (ES module style)
-
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -9,7 +7,8 @@ import { fileURLToPath } from 'url';
 
 import dishRoutes from './routes/dishRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
-const orderRoutes = require('./routes/orderRoutes'); // Import the order route
+import orderRoutes from './routes/orderRoutes.js'; // Use import instead of require
+
 // ES module dirname workaround
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,7 +28,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Routes
 app.use('/api/dishes', dishRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api', orderRoutes);
+app.use('/api', orderRoutes); // Use imported orderRoutes
 
 // Test route
 app.get('/', (req, res) => {

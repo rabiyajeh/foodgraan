@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema({
   customer: {
@@ -17,4 +17,5 @@ const orderSchema = new mongoose.Schema({
   status: { type: String, default: 'Pending' },
 }, { timestamps: true });
 
-module.exports = mongoose.model('Order', orderSchema);
+// Use export default for ES module
+export default mongoose.model('Order', orderSchema);
